@@ -5,17 +5,20 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build && node scripts/emit-manifest.mjs",
     "preview": "vite preview",
-    "sync": "rm -rf ../Bilko/public/projects/stack-audit && cp -r dist ../Bilko/public/projects/stack-audit"
+    "sync": "rm -rf ../Bilko/public/projects/stack-audit && cp -r dist ../Bilko/public/projects/stack-audit",
+    "test": "playwright test",
+    "test:headed": "playwright test --headed"
   },
   "dependencies": {
-    "@bilkobibitkov/host-kit": "^0.1.0",
+    "@bilkobibitkov/host-kit": "^0.3.0",
     "@clerk/clerk-react": "^5.60.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
+    "@playwright/test": "^1.59.1",
     "@tailwindcss/vite": "^4.1.6",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
