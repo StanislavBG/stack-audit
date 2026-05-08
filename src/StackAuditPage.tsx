@@ -1,7 +1,27 @@
 import { useState, useEffect, useRef } from 'react';
 import { SignInButton } from '@clerk/clerk-react';
 import { useToolApi } from './useToolApi.js';
-import { track, ToolHero, ScoreCard, SectionBreakdown, CrossPromo } from './kit.js';
+import { track, ToolHero, ScoreCard, SectionBreakdown, CrossPromo } from '@bilkobibitkov/host-kit';
+
+const STACK_AUDIT_THEME = {
+  heroGradient: 'from-[#0f1419] via-[#0a0d12] to-[#0f1419]',
+  glowColor: 'rgba(148, 163, 184, 0.14)',
+  accentText: 'text-slate-400',
+  accentTextLight: 'text-slate-500',
+};
+
+const CROSS_PROMO_ITEMS = [
+  {
+    name: 'LaunchGrader',
+    href: 'https://bilko.run/products/launch-grader',
+    hook: 'Stack optimized. Now audit your launch readiness.',
+  },
+  {
+    name: 'LocalScore',
+    href: 'https://bilko.run/projects/local-score/',
+    hook: 'Need to analyze sensitive contracts? Do it privately in your browser.',
+  },
+];
 
 // ── Inline sub-components for tutorial sections ──────────────────────────────
 
@@ -81,7 +101,7 @@ export function StackAuditPage() {
         <button ref={signInRef} className="hidden" aria-hidden="true" />
       </SignInButton>
 
-      <ToolHero title="Find waste in your SaaS stack" tagline="Paste your tools. AI finds overlap, cheaper alternatives, and exactly how much you can save.">
+      <ToolHero theme={STACK_AUDIT_THEME} title="Find waste in your SaaS stack" tagline="Paste your tools. AI finds overlap, cheaper alternatives, and exactly how much you can save.">
         <div className="bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 p-4 md:p-5 shadow-2xl max-w-2xl mx-auto">
           <textarea
             value={tools}
@@ -114,7 +134,7 @@ export function StackAuditPage() {
 
       {result && (
         <div ref={resultRef} className="max-w-2xl mx-auto px-6 pt-10 space-y-6 pb-16">
-          <ScoreCard score={result.total_score} grade={result.grade} verdict={result.roast} toolName="StackAudit" />
+          <ScoreCard score={result.total_score} grade={result.grade} verdict={result.roast} toolName="StackAudit" theme={STACK_AUDIT_THEME} />
 
           {/* Savings banner */}
           <div className="bg-green-50 border-2 border-green-200 rounded-2xl p-6 text-center animate-slide-up">
@@ -174,7 +194,7 @@ export function StackAuditPage() {
             Enterprise stack audit tools charge $10,000+/year. You just paid $1.
           </div>
 
-          <CrossPromo />
+          <CrossPromo items={CROSS_PROMO_ITEMS} />
 
           <div className="text-center pt-4">
             <button onClick={() => { reset(); setTools(''); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
