@@ -23,8 +23,9 @@ const totalGz = files.reduce((acc, f) => acc + gzipSync(readFileSync(f)).length,
 const sha    = execSync('git rev-parse --short HEAD').toString().trim();
 const branch = execSync('git rev-parse --abbrev-ref HEAD').toString().trim();
 
-const hostKitRaw = pkg.dependencies?.['@bilkobibitkov/host-kit'] ?? '0.0.0';
-const hostKitVer = hostKitRaw.replace(/^[\^~]/, '');
+// host-kit is a file: dependency, so read the installed version rather than the specifier.
+let hostKitVer = '0.0.0';
+try { hostKitVer = JSON.parse(readFileSync('node_modules/host-kit/package.json', 'utf8')).version ?? '0.0.0'; } catch {}
 
 const manifest = {
   schemaVersion: 1,

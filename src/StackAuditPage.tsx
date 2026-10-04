@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { SignInButton } from '@clerk/clerk-react';
 import { useToolApi } from './useToolApi.js';
-import { track, ToolHero, ScoreCard, SectionBreakdown, CrossPromo } from '@bilkobibitkov/host-kit';
+import { track, ToolHero, ScoreCard, SectionBreakdown, CrossPromo } from 'host-kit';
 
 const STACK_AUDIT_THEME = {
   heroGradient: 'from-[#0f1419] via-[#0a0d12] to-[#0f1419]',

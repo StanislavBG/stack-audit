@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { ClerkProvider } from '@clerk/clerk-react';
-import { initTelemetry } from '@bilkobibitkov/host-kit';
+import { initTelemetry } from 'host-kit';
 import { StackAuditPage } from './StackAuditPage.js';
 import './index.css';
 
